@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "yrxN3Btb22CGUBW4Aj+yqP7FWjhLgHNjHDsp5RdfqGrHwDa8Ji1cPvO1pzwudRcozzJSO72vAXRg7y5Grtitgg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\hp\\source\\repos\\SimpleDatePicker\\SimpleDatePicker\\SimpleDatePicker\\SimpleDatePicker.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\hp\\.nuget\\packages\\xamarin.forms\\5.0.0.2401\\xamarin.forms.5.0.0.2401.nupkg.sha512"
+  ],
+  "logs": []
+}

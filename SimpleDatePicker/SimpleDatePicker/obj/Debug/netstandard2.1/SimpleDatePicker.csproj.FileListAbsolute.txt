@@ -1,0 +1,12 @@
+C:\Users\hp\source\repos\SimpleDatePicker\SimpleDatePicker\SimpleDatePicker\bin\Debug\netstandard2.1\SimpleDatePicker.deps.json
+C:\Users\hp\source\repos\SimpleDatePicker\SimpleDatePicker\SimpleDatePicker\bin\Debug\netstandard2.1\SimpleDatePicker.dll
+C:\Users\hp\source\repos\SimpleDatePicker\SimpleDatePicker\SimpleDatePicker\bin\Debug\netstandard2.1\SimpleDatePicker.pdb
+C:\Users\hp\source\repos\SimpleDatePicker\SimpleDatePicker\SimpleDatePicker\obj\Debug\netstandard2.1\SimpleDatePicker.csproj.AssemblyReference.cache
+C:\Users\hp\source\repos\SimpleDatePicker\SimpleDatePicker\SimpleDatePicker\obj\Debug\netstandard2.1\SimpleDatePicker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hp\source\repos\SimpleDatePicker\SimpleDatePicker\SimpleDatePicker\obj\Debug\netstandard2.1\Views\SimpleDatePicker.xaml.g.cs
+C:\Users\hp\source\repos\SimpleDatePicker\SimpleDatePicker\SimpleDatePicker\obj\Debug\netstandard2.1\SimpleDatePicker.AssemblyInfoInputs.cache
+C:\Users\hp\source\repos\SimpleDatePicker\SimpleDatePicker\SimpleDatePicker\obj\Debug\netstandard2.1\SimpleDatePicker.AssemblyInfo.cs
+C:\Users\hp\source\repos\SimpleDatePicker\SimpleDatePicker\SimpleDatePicker\obj\Debug\netstandard2.1\SimpleDatePicker.csproj.CoreCompileInputs.cache
+C:\Users\hp\source\repos\SimpleDatePicker\SimpleDatePicker\SimpleDatePicker\obj\Debug\netstandard2.1\XamlC.stamp
+C:\Users\hp\source\repos\SimpleDatePicker\SimpleDatePicker\SimpleDatePicker\obj\Debug\netstandard2.1\SimpleDatePicker.dll
+C:\Users\hp\source\repos\SimpleDatePicker\SimpleDatePicker\SimpleDatePicker\obj\Debug\netstandard2.1\SimpleDatePicker.pdb
