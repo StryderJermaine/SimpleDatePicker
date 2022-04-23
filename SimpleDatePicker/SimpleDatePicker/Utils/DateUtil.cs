@@ -309,6 +309,32 @@ namespace SimpleDatePicker.Utils
             }
         }
 
+        public static List<string> GetYears(int? minYear, int? maxYear)
+        {
+            try
+            {
+                var years = new List<string>();
+
+                minYear = minYear == 0 ? 1899 : minYear;
+
+                maxYear = maxYear == 0 ? 2100 : maxYear;
+
+                for (var i = minYear; i <= maxYear; i++)
+                {
+                    years.Add(minYear.ToString());
+
+                    minYear++;
+                }
+
+                return years;
+            }
+            catch (Exception e)
+            {
+                var x = e.Message;
+                return null;
+            }
+        }
+
         public static List<string> GetDobYears()
         {
             try
