@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SimpleDatePicker.Utils
@@ -81,48 +82,40 @@ namespace SimpleDatePicker.Utils
         /// <returns>A list of the days</returns>
         public static List<string> GetDays(string month, int year = 0)
         {
-            try
+            var days = 0;
+
+            switch (month)
             {
-                var days = 0;
+                case "9":
+                case "4":
+                case "6":
+                case "11":
+                    days = 30;
+                    break;
 
-                switch (month)
-                {
-                    case "9":
-                    case "4":
-                    case "6":
-                    case "11":
-                        days = 30;
-                        break;
+                case "2":
+                    days = DateTime.IsLeapYear(year) ? 29 : 28;
+                    break;
 
-                    case "2":
-                        days = DateTime.IsLeapYear(year) ? 29 : 28;
-                        break;
-
-                    case "1":
-                    case "3":
-                    case "5":
-                    case "7":
-                    case "8":
-                    case "10":
-                    case "12":
-                        days = 31;
-                        break;
-                }
-
-                var daysList = new List<string>();
-
-                for (var i = 1; i <= days; i++)
-                {
-                    daysList.Add(i.ToString());
-                }
-
-                return daysList;
+                case "1":
+                case "3":
+                case "5":
+                case "7":
+                case "8":
+                case "10":
+                case "12":
+                    days = 31;
+                    break;
             }
-            catch (Exception e)
+
+            var daysList = new List<string>();
+
+            for (var i = 1; i <= days; i++)
             {
-                var x = e.Message;
-                return null;
+                daysList.Add(i.ToString());
             }
+
+            return daysList;
         }
 
         public static string GetMonthStringIndex(string month)
@@ -315,9 +308,9 @@ namespace SimpleDatePicker.Utils
             {
                 var years = new List<string>();
 
-                minYear = minYear == 0 ? 1899 : minYear;
+                minYear = minYear == 0 || minYear == 1 ? 1899 : minYear;
 
-                maxYear = maxYear == 0 ? 2100 : maxYear;
+                maxYear = maxYear == 0 || maxYear == 1 ? 2100 : maxYear;
 
                 for (var i = minYear; i <= maxYear; i++)
                 {
@@ -413,30 +406,25 @@ namespace SimpleDatePicker.Utils
             return daysList;
         }
 
-        public static List<string> GetManufactureYears()
+        public static List<string> GetFilteredMonths(int minMonth)
         {
-            try
-            {
-                var years = new List<string>();
+            minMonth -= 1;
 
-                var minYear = 1990;
+            return minMonth == 11 ? MonthNames : MonthNames.Where(month => MonthNames.IndexOf(month) >= minMonth).ToList();
+        }
+        
+        public static List<string> GetFilteredDays(string month, int minDay)
+        {
+            minDay -= 1;
 
-                var maxYear = DateTime.Now.Year;
+            return GetDays(month).Where(day => GetDays(month).IndexOf(day) >= minDay).ToList();
+        }
 
-                for (var i = maxYear; i >= minYear; i--)
-                {
-                    years.Add(maxYear.ToString());
+        public static List<string> GetFilteredDaysMax(string month, int minDay)
+        {
+            minDay -= 1;
 
-                    maxYear--;
-                }
-
-                return years;
-            }
-            catch (Exception e)
-            {
-                var x = e.Message;
-                return null;
-            }
+            return GetDays(month).Where(day => GetDays(month).IndexOf(day) <= minDay).ToList();
         }
     }
 }

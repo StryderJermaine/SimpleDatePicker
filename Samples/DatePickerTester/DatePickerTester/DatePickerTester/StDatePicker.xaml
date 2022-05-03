@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SimpleDatePicker.Views.SimpleDatePicker"
+             x:Class="DatePickerTester.StDatePicker"
              xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms">
 
     <ContentView.Resources>
@@ -15,13 +15,13 @@
                         Value="CenterAndExpand"/>
 
                 <Setter Property="IsEditableMode"
-                        Value="True"/>
+                        Value="False"/>
 
                 <Setter Property="ShowBorder"
                         Value="False"/>
 
                 <Setter Property="ShowClearButton"
-                        Value="True"/>
+                        Value="False"/>
 
                 <Setter Property="ShowSuggestionsOnFocus"
                         Value="True" />
@@ -31,6 +31,9 @@
 
                 <Setter Property="MaximumDropDownHeight"
                         Value="200"/>
+
+                <Setter Property="FontFamily"
+                        Value="Circular"/>
 
                 <Setter Property="TextSize"
                         Value="{OnIdiom Phone=14, Tablet=24}"/>
@@ -44,19 +47,23 @@
 
     </ContentView.Resources>
 
-    <Grid ColumnSpacing="0"
-          ColumnDefinitions="*,*,*">
+    <Grid ColumnSpacing="0">
 
-        <!--<Picker Grid.Column="0"
-                x:Name="YearPicker"
-                Title="Year"
-                HorizontalTextAlignment="Center"
-                HorizontalOptions="FillAndExpand"/>-->
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition Width="*" />
+
+            <ColumnDefinition Width="*" />
+
+            <ColumnDefinition Width="*" />
+
+        </Grid.ColumnDefinitions>
 
         <combobox:SfComboBox x:Name="YearPicker"
-                             Grid.Column="0"
+                                 Grid.Column="0"
+                             Watermark="Year"
                              IsEditableMode="True" 
-                             Style="{StaticResource StDatePickerStyle}">
+                                 Style="{StaticResource StDatePickerStyle}">
 
             <combobox:SfComboBox.CustomView>
 
@@ -69,23 +76,10 @@
 
         </combobox:SfComboBox>
 
-        <!--<Label Grid.Column="1"
-               x:Name="Separator1"
-               VerticalOptions="CenterAndExpand"
-               VerticalTextAlignment="Center"
-               HorizontalOptions="CenterAndExpand"
-               HorizontalTextAlignment="Center"/>-->
-
-        <!--<Picker Grid.Column="2"
-                x:Name="MonthPicker" 
-                Title="Month"
-                HorizontalOptions="FillAndExpand"
-                HorizontalTextAlignment="Center"/>-->
-
         <combobox:SfComboBox x:Name="MonthPicker"
-                             Style="{StaticResource StDatePickerStyle}"
-                             
-                             Grid.Column="1">
+                            Style="{StaticResource StDatePickerStyle}"
+                             Watermark="Month"
+                            Grid.Column="1">
 
             <combobox:SfComboBox.CustomView>
 
@@ -98,23 +92,10 @@
 
         </combobox:SfComboBox>
 
-        <!--<Label Grid.Column="3"
-               x:Name="Separator2"
-               VerticalOptions="CenterAndExpand"
-               VerticalTextAlignment="Center"
-               HorizontalOptions="CenterAndExpand"
-               HorizontalTextAlignment="Center"/>-->
- 
-        <!--<Picker Grid.Column="4"
-                x:Name="DayPicker"
-                Title="Day"
-                HorizontalOptions="FillAndExpand"
-                HorizontalTextAlignment="Center"/>-->
-
         <combobox:SfComboBox x:Name="DayPicker"
-                             Grid.Column="2"
-                             
-                             Style="{StaticResource StDatePickerStyle}">
+                            Grid.Column="2"
+                             Watermark="Day"
+                            Style="{StaticResource StDatePickerStyle}">
 
             <combobox:SfComboBox.CustomView>
 
