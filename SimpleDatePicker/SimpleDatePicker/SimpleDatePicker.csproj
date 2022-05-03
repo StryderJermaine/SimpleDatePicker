@@ -6,6 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Syncfusion.Xamarin.DataSource" Version="20.1.0.51" />
+    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="20.1.0.51" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
   </ItemGroup>
 

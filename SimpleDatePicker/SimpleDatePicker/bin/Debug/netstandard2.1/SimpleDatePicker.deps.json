@@ -9,10 +9,52 @@
     ".NETStandard,Version=v2.1/": {
       "SimpleDatePicker/1.0.0": {
         "dependencies": {
+          "Syncfusion.Xamarin.DataSource": "20.1.0.51",
+          "Syncfusion.Xamarin.SfComboBox": "20.1.0.51",
           "Xamarin.Forms": "5.0.0.2401"
         },
         "runtime": {
           "SimpleDatePicker.dll": {}
+        }
+      },
+      "Syncfusion.Licensing/20.1.0.51": {
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Licensing.dll": {
+            "assemblyVersion": "20.1.0.51",
+            "fileVersion": "20.1.0.51"
+          }
+        }
+      },
+      "Syncfusion.Xamarin.Core/20.1.0.51": {
+        "dependencies": {
+          "Syncfusion.Licensing": "20.1.0.51",
+          "Xamarin.Forms": "5.0.0.2401"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Core.XForms.dll": {
+            "assemblyVersion": "20.1451.0.51",
+            "fileVersion": "20.1451.0.51"
+          }
+        }
+      },
+      "Syncfusion.Xamarin.DataSource/20.1.0.51": {
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.DataSource.Portable.dll": {
+            "assemblyVersion": "20.1451.0.51",
+            "fileVersion": "20.1451.0.51"
+          }
+        }
+      },
+      "Syncfusion.Xamarin.SfComboBox/20.1.0.51": {
+        "dependencies": {
+          "Syncfusion.Xamarin.Core": "20.1.0.51",
+          "Xamarin.Forms": "5.0.0.2401"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.SfComboBox.XForms.dll": {
+            "assemblyVersion": "20.1451.0.51",
+            "fileVersion": "20.1451.0.51"
+          }
         }
       },
       "Xamarin.Forms/5.0.0.2401": {
@@ -38,6 +80,34 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Syncfusion.Licensing/20.1.0.51": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mn6bLH6fXMFGQJPVmAQBfJ6aE6AVBzrwbM0o9fvq3GWJ/8qtwXEDhWy34YABhPuX3RpVKWeOq5dwIh+hGwmBbw==",
+      "path": "syncfusion.licensing/20.1.0.51",
+      "hashPath": "syncfusion.licensing.20.1.0.51.nupkg.sha512"
+    },
+    "Syncfusion.Xamarin.Core/20.1.0.51": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-t6xc4fKdNvYu9U+6xB05alg6Ewm8dQfOVJizUsC8a7b6mPavj6DS91NRSgi1LQTOO9QKw0dnkj9ztFbQVgH+zQ==",
+      "path": "syncfusion.xamarin.core/20.1.0.51",
+      "hashPath": "syncfusion.xamarin.core.20.1.0.51.nupkg.sha512"
+    },
+    "Syncfusion.Xamarin.DataSource/20.1.0.51": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mJEiSzyBQWOcypncPMAltzoebx47B9pwDgg278x+FQKyWI0Lfidt/Daxruga0q0WSvWwqdwF2Jmm8fSKSCKy9g==",
+      "path": "syncfusion.xamarin.datasource/20.1.0.51",
+      "hashPath": "syncfusion.xamarin.datasource.20.1.0.51.nupkg.sha512"
+    },
+    "Syncfusion.Xamarin.SfComboBox/20.1.0.51": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JVVu903O5o7EFQUNxKAYTB7O+IGc6CT7+ebm+s0PazR5PFIDFoox6o7AUnhNP7bOpzynUorSQOukqNO1EUSEzg==",
+      "path": "syncfusion.xamarin.sfcombobox/20.1.0.51",
+      "hashPath": "syncfusion.xamarin.sfcombobox.20.1.0.51.nupkg.sha512"
     },
     "Xamarin.Forms/5.0.0.2401": {
       "type": "package",

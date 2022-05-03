@@ -9,18 +9,26 @@ namespace DatePickerTester
         {
             InitializeComponent();
 
-            SimpleDatePicker.MinimumYear = 2010;
+            SimpleDatePicker.MinimumDate = DateTime.UtcNow;
+            SimpleDatePicker.MaximumDate = new DateTime(2023,12,10);
 
-            SimpleDatePicker.MaximumYear = 2022;
-
-            //SimpleDatePicker.Date = DateTime.UtcNow;
+            //SimpleDatePicker.MaximumYear = 2022;
 
             //SimpleDatePicker.SetDate(DateTime.UtcNow);
+
+            //SimpleDatePicker.SetDate(DateTime.UtcNow);
+
+            //StDatePicker.YearItemsSource = DateUtil.GetYears();
         }
 
         private void SimpleDatePicker_OnDateSelected(object sender, EventArgs e)
         {
-            DateLabel.Text = SimpleDatePicker.Date.GetValueOrDefault().ToShortDateString();
+            DateLabel.Text = SimpleDatePicker.GetDate().GetValueOrDefault().ToShortDateString();
+        }
+
+        private void ClearBtn_OnClicked(object sender, EventArgs e)
+        {
+            SimpleDatePicker.ClearDate();
         }
     }
 }

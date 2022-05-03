@@ -17,28 +17,32 @@ namespace SimpleDatePicker.Views {
     public partial class SimpleDatePicker : global::Xamarin.Forms.ContentView {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Picker YearPicker;
+        private global::Syncfusion.XForms.ComboBox.SfComboBox YearPicker;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Label Separator1;
+        private global::Xamarin.Forms.Label YearLabel;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Picker MonthPicker;
+        private global::Syncfusion.XForms.ComboBox.SfComboBox MonthPicker;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Label Separator2;
+        private global::Xamarin.Forms.Label MonthLabel;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Picker DayPicker;
+        private global::Syncfusion.XForms.ComboBox.SfComboBox DayPicker;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::Xamarin.Forms.Label DayLabel;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
             global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(SimpleDatePicker));
-            YearPicker = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Picker>(this, "YearPicker");
-            Separator1 = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Label>(this, "Separator1");
-            MonthPicker = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Picker>(this, "MonthPicker");
-            Separator2 = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Label>(this, "Separator2");
-            DayPicker = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Picker>(this, "DayPicker");
+            YearPicker = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Syncfusion.XForms.ComboBox.SfComboBox>(this, "YearPicker");
+            YearLabel = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Label>(this, "YearLabel");
+            MonthPicker = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Syncfusion.XForms.ComboBox.SfComboBox>(this, "MonthPicker");
+            MonthLabel = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Label>(this, "MonthLabel");
+            DayPicker = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Syncfusion.XForms.ComboBox.SfComboBox>(this, "DayPicker");
+            DayLabel = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Label>(this, "DayLabel");
         }
     }
 }

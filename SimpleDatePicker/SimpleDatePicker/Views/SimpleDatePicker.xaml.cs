@@ -1,9 +1,8 @@
 ﻿using SimpleDatePicker.Utils;
+using Syncfusion.XForms.ComboBox;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using Xamarin.Forms;
-using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace SimpleDatePicker.Views
@@ -11,59 +10,40 @@ namespace SimpleDatePicker.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SimpleDatePicker : ContentView
     {
-        /*
-         * Properties
-         */
-        public static readonly BindableProperty YearPickerTitleProperty =
-            BindableProperty.Create(nameof(YearPickerTitle), typeof(string), typeof(SimpleDatePicker), default(string), BindingMode.TwoWay);
-
-        public static readonly BindableProperty MonthPickerTitleProperty =
-            BindableProperty.Create(nameof(MonthPickerTitle), typeof(string), typeof(SimpleDatePicker), default(string), BindingMode.TwoWay);
-
-        public static readonly BindableProperty DayPickerTitleProperty =
-            BindableProperty.Create("DayPickerTitle", typeof(string), typeof(SimpleDatePicker), default(string), BindingMode.TwoWay);
-
-
-        /// <summary>
-        /// Bindable property for the list of years for the Year Picker
-        /// </summary>
         public static readonly BindableProperty YearItemsSourceProperty =
-            BindableProperty.Create("YearItemsSource", typeof(IList), typeof(SimpleDatePicker), default(IList));
+            BindableProperty.Create(nameof(YearItemsSource), typeof(IList), typeof(SimpleDatePicker));
 
         public static readonly BindableProperty MonthItemsSourceProperty =
-            BindableProperty.Create("MonthItemsSource", typeof(IList), typeof(SimpleDatePicker), default(IList));
+            BindableProperty.Create(nameof(MonthItemsSource), typeof(IList), typeof(SimpleDatePicker));
 
         public static readonly BindableProperty DayItemsSourceProperty =
-            BindableProperty.Create("DayItemsSource", typeof(IList), typeof(SimpleDatePicker), default(IList));
+            BindableProperty.Create(nameof(DayItemsSource), typeof(IList), typeof(SimpleDatePicker));
 
         public static readonly BindableProperty YearSelectedIndexProperty =
-            BindableProperty.Create("YearSelectedIndex", typeof(int), typeof(SimpleDatePicker), -1, BindingMode.TwoWay,
+            BindableProperty.Create(nameof(YearSelectedIndex), typeof(int), typeof(SimpleDatePicker), -1, BindingMode.TwoWay,
                 propertyChanged: OnSelectedYearIndexChanged);
 
         public static readonly BindableProperty MonthSelectedIndexProperty =
-            BindableProperty.Create("MonthSelectedIndex", typeof(int), typeof(SimpleDatePicker), -1, BindingMode.TwoWay,
+            BindableProperty.Create(nameof(MonthSelectedIndex), typeof(int), typeof(SimpleDatePicker), -1, BindingMode.TwoWay,
                 propertyChanged: OnSelectedMonthIndexChanged);
 
         public static readonly BindableProperty DaySelectedIndexProperty =
-            BindableProperty.Create("DaySelectedIndex", typeof(int), typeof(SimpleDatePicker), -1, BindingMode.TwoWay,
+            BindableProperty.Create(nameof(DaySelectedIndex), typeof(int), typeof(SimpleDatePicker), -1, BindingMode.TwoWay,
                 propertyChanged: OnSelectedDayIndexChanged);
 
-        public static readonly BindableProperty YearSelectedItemProperty =
-            BindableProperty.Create("YearSelectedItem", typeof(object), typeof(SimpleDatePicker), null, BindingMode.TwoWay,
+        public static readonly BindableProperty SelectedYearProperty =
+            BindableProperty.Create(nameof(SelectedYear), typeof(object), typeof(SimpleDatePicker), null, BindingMode.TwoWay,
                 propertyChanged: OnSelectedYearItemChanged);
 
-        public static readonly BindableProperty MonthSelectedItemProperty =
-            BindableProperty.Create("MonthSelectedItem", typeof(object), typeof(SimpleDatePicker), null, BindingMode.TwoWay,
+        public static readonly BindableProperty SelectedMonthProperty =
+            BindableProperty.Create(nameof(SelectedMonth), typeof(object), typeof(SimpleDatePicker), null, BindingMode.TwoWay,
                 propertyChanged: OnSelectedMonthItemChanged);
 
-        public static readonly BindableProperty DaySelectedItemProperty =
-            BindableProperty.Create("DaySelectedItem", typeof(object), typeof(SimpleDatePicker), null, BindingMode.TwoWay,
+        public static readonly BindableProperty SelectedDayProperty =
+            BindableProperty.Create(nameof(SelectedDay), typeof(object), typeof(SimpleDatePicker), null, BindingMode.TwoWay,
                 propertyChanged: OnSelectedDayItemChanged);
 
         public static readonly BindableProperty DateProperty =
-            BindableProperty.Create(nameof(Date), typeof(DateTime), typeof(SimpleDatePicker), DateTime.Today, BindingMode.TwoWay);
-
-        public static readonly BindableProperty MinimumDateProperty =
             BindableProperty.Create(nameof(Date), typeof(DateTime), typeof(SimpleDatePicker), DateTime.Today, BindingMode.TwoWay);
 
         public static readonly BindableProperty FontSizeProperty =
@@ -75,21 +55,13 @@ namespace SimpleDatePicker.Views
         public static readonly BindableProperty TextColorProperty =
             BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(SimpleDatePicker), default(Color), BindingMode.TwoWay);
 
-        public static readonly BindableProperty TitleColorProperty =
-            BindableProperty.Create(nameof(TitleColor), typeof(Color), typeof(SimpleDatePicker), default(Color), BindingMode.TwoWay);
+        public static readonly BindableProperty MinimumDateProperty =
+            BindableProperty.Create(nameof(MinimumDate), typeof(DateTime?), typeof(SimpleDatePicker), null, BindingMode.TwoWay,
+                propertyChanged: OnMinimumDateSelected);
 
-        public static readonly BindableProperty SeparatorColorProperty =
-            BindableProperty.Create(nameof(SeparatorColor), typeof(Color), typeof(SimpleDatePicker), default(Color), BindingMode.TwoWay);
-
-        public static readonly BindableProperty SeparatorProperty =
-            BindableProperty.Create(nameof(Separator), typeof(string), typeof(SimpleDatePicker),
-                default(string), BindingMode.TwoWay);
-
-        public static readonly BindableProperty MinimumYearProperty =
-            BindableProperty.Create(nameof(MinimumYear), typeof(int), typeof(SimpleDatePicker), default(int), BindingMode.TwoWay);
-        
-        public static readonly BindableProperty MaximumYearProperty =
-            BindableProperty.Create(nameof(MaximumYear), typeof(int), typeof(SimpleDatePicker), default(int), BindingMode.TwoWay);
+        public static readonly BindableProperty MaximumDateProperty =
+            BindableProperty.Create(nameof(MaximumDate), typeof(DateTime?), typeof(SimpleDatePicker), null, BindingMode.TwoWay,
+                propertyChanged: OnMaximumDateSelected);
 
         public IList? YearItemsSource
         {
@@ -127,44 +99,26 @@ namespace SimpleDatePicker.Views
             set => SetValue(DaySelectedIndexProperty, value);
         }
 
-        public object? YearSelectedItem
+        public object? SelectedYear
         {
-            get => (object)GetValue(YearSelectedItemProperty);
-            set => SetValue(YearSelectedItemProperty, value);
+            get => (object)GetValue(SelectedYearProperty);
+            set => SetValue(SelectedYearProperty, value);
         }
 
-        public object? MonthSelectedItem
+        public object? SelectedMonth
         {
-            get => (object)GetValue(MonthSelectedItemProperty);
-            set => SetValue(MonthSelectedItemProperty, value);
+            get => (object)GetValue(SelectedMonthProperty);
+            set => SetValue(SelectedMonthProperty, value);
         }
 
-        public object? DaySelectedItem
+        public object? SelectedDay
         {
-            get => (object)GetValue(DaySelectedItemProperty);
-            set => SetValue(DaySelectedItemProperty, value);
-        }
-
-        public string YearPickerTitle
-        {
-            get => (string)GetValue(YearPickerTitleProperty);
-            set => SetValue(YearPickerTitleProperty, value);
-        }
-
-        public string MonthPickerTitle
-        {
-            get => (string)GetValue(MonthPickerTitleProperty);
-            set => SetValue(MonthPickerTitleProperty, value);
-        }
-
-        public string DayPickerTitle
-        {
-            get => (string)GetValue(DayPickerTitleProperty);
-            set => SetValue(DayPickerTitleProperty, value);
+            get => (object)GetValue(SelectedDayProperty);
+            set => SetValue(SelectedDayProperty, value);
         }
 
         /// <summary>
-        /// Gets/sets the font size of the text for all three pickers and the separators
+        /// Gets/sets the font size of the picker label
         /// </summary>
         public string FontSize
         {
@@ -173,7 +127,7 @@ namespace SimpleDatePicker.Views
         }
 
         /// <summary>
-        /// Gets/sets the font family of the text for all three pickers 
+        /// Gets/sets the font family of the picker label 
         /// </summary>
         public string FontFamily
         {
@@ -182,7 +136,7 @@ namespace SimpleDatePicker.Views
         }
 
         /// <summary>
-        /// Gets/sets the text color for all three pickers 
+        /// Gets/sets the text color for the picker label
         /// </summary>
         public Color TextColor
         {
@@ -190,223 +144,195 @@ namespace SimpleDatePicker.Views
             set => SetValue(TextColorProperty, value);
         }
 
-        /// <summary>
-        /// Gets/sets the title color for all three pickers 
-        /// </summary>
-        public Color TitleColor
-        {
-            get => (Color)GetValue(TitleColorProperty);
-            set => SetValue(TitleColorProperty, value);
-        }
-
-        /// <summary>
-        /// Gets/sets the color of the separators
-        /// </summary>
-        public Color SeparatorColor
-        {
-            get => (Color)GetValue(SeparatorColorProperty);
-            set => SetValue(SeparatorColorProperty, value);
-        }
-
-        /// <summary>
-		/// Gets/sets the separator type
-		/// </summary>
-        public string Separator
-        {
-            get => (string)GetValue(SeparatorProperty);
-            set => SetValue(SeparatorProperty, value);
-        }
-
-        /// <summary>
-        /// Gets/sets the minimum year date picker
-        /// </summary>
-        public int? MinimumYear
-        {
-            get => (int)GetValue(MinimumYearProperty);
-            set => SetValue(MinimumYearProperty, value);
-        }
-
-        /// <summary>
-        /// Gets/sets the minimum year date picker
-        /// </summary>
-        public int? MaximumYear
-        {
-            get => (int)GetValue(MaximumYearProperty);
-            set => SetValue(MaximumYearProperty, value);
-        }
-
-        public string YearTitle { get; set; }
-
-        public string MonthTitle { get; set; }
-
-        public string DayTitle { get; set; }
-
-        /// <summary>
-        /// Get/sets the date
-        /// </summary>
-        public DateTime? Date
+        private DateTime? Date
         {
             get => (DateTime)GetValue(DateProperty);
-            set
-            {
-                SetValue(DateProperty, value);
-                //SetDate(Date);
-            }
+            set => SetValue(DateProperty, value);
         }
 
         /// <summary>
-        /// Get/sets the minimum date
+        /// Gets/sets the lowest date selectable
         /// </summary>
         public DateTime? MinimumDate
         {
-            get => (DateTime)GetValue(MinimumDateProperty);
-            set
-            {
-                SetValue(DateProperty, value);
-            }
+            get => (DateTime?)GetValue(MinimumDateProperty);
+            set => SetValue(MinimumDateProperty, value);
         }
 
-        public IList<string>? YearItems { get; } = new LockableObservableListWrapper();
-        public IList<string>? MonthItems { get; } = new LockableObservableListWrapper();
-        public IList<string>? DayItems { get; } = new LockableObservableListWrapper();
-
-        public event EventHandler YearSelectedIndexChanged;
-
-        public event EventHandler MonthSelectedIndexChanged;
-
-        public event EventHandler DaySelectedIndexChanged;
-
-        public event EventHandler DateSelected;
-
-        void UpdateSelectedYearIndex(object selectedItem)
+        /// <summary>
+        /// Gets/sets the highest date selectable
+        /// </summary>
+        public DateTime? MaximumDate
         {
-            if (YearItemsSource != null)
-            {
-                YearSelectedIndex = YearItemsSource.IndexOf(selectedItem);
-                return;
-            }
-            YearSelectedIndex = YearItems.IndexOf(selectedItem);
+            get => (DateTime?)GetValue(MaximumDateProperty);
+            set => SetValue(MaximumDateProperty, value);
         }
 
-        void UpdateSelectedMonthIndex(object selectedItem)
+        public event EventHandler? YearSelectedIndexChanged;
+
+        public event EventHandler? MonthSelectedIndexChanged;
+
+        public event EventHandler? DaySelectedIndexChanged;
+
+        /// <summary>
+        /// Event raised after a date is selected
+        /// </summary>
+        public event EventHandler? DateSelected;
+
+        private void UpdateSelectedYearIndex(object selectedItem)
         {
-            if (MonthItemsSource != null)
-            {
-                MonthSelectedIndex = MonthItemsSource.IndexOf(selectedItem);
-                return;
-            }
-            MonthSelectedIndex = MonthItems.IndexOf(selectedItem);
+            if (YearItemsSource == null) return;
+
+            YearSelectedIndex = YearItemsSource.IndexOf(selectedItem);
+            return;
+            //YearSelectedIndex = YearItems.IndexOf(selectedItem);
         }
 
-        void UpdateSelectedDayIndex(object selectedItem)
+        private void UpdateSelectedMonthIndex(object selectedItem)
         {
-            if (DayItemsSource != null)
-            {
-                DaySelectedIndex = DayItemsSource.IndexOf(selectedItem);
-                return;
-            }
-            DaySelectedIndex = DayItems.IndexOf(selectedItem);
+            if (MonthItemsSource == null) return;
+
+            MonthSelectedIndex = MonthItemsSource.IndexOf(selectedItem);
+            return;
+            //MonthSelectedIndex = MonthItems.IndexOf(selectedItem);
         }
 
-        void UpdateSelectedYearItem(int index)
+        private void UpdateSelectedDayIndex(object selectedItem)
+        {
+            if (DayItemsSource == null) return;
+
+            DaySelectedIndex = DayItemsSource.IndexOf(selectedItem);
+            return;
+            //DaySelectedIndex = DayItems.IndexOf(selectedItem);
+        }
+
+        private void UpdateSelectedYearItem(int index)
         {
             if (index == -1)
             {
-                YearSelectedItem = null;
+                SelectedYear = null;
 
                 return;
             }
 
-            if (YearItemsSource != null)
-            {
-                YearSelectedItem = YearItemsSource[index];
+            if (YearItemsSource == null) return;
 
-                SetDate();
+            SelectedYear = YearItemsSource[index];
 
-                return;
-            }
+            YearLabel.Text = SelectedYear.ToString();
 
-            YearSelectedItem = YearItems[index];
+            SetDate();
+
+            //YearSelectedItem = YearItems?[index];
         }
 
-        void UpdateSelectedMonthItem(int index)
+        private void UpdateSelectedMonthItem(int index)
         {
             try
             {
-                if (YearSelectedItem == null)
+                if (SelectedYear == null)
                 {
-                    MonthSelectedItem = null;
+                    SelectedMonth = null;
 
-                    Application.Current.MainPage.DisplayAlert("Date", "Select a year first", "Ok");
+                    //Application.Current.MainPage.DisplayAlert("Date", "Select a year first", "Ok");
 
                     return;
                 }
 
                 if (index == -1)
                 {
-                    MonthSelectedItem = null;
+                    SelectedMonth = null;
 
                     return;
                 }
 
                 if (MonthItemsSource != null)
                 {
-                    MonthSelectedItem = MonthItemsSource[index];
+                    SelectedMonth = MonthItemsSource[index];
+
+                    MonthLabel.Text = SelectedMonth.ToString();
 
                     SetDate();
 
                     //Reset Day
-                    if (DaySelectedItem != null && DayItemsSource != null)
+                    if (SelectedDay != null && DayItemsSource != null)
                     {
-                        if (Convert.ToInt32(DaySelectedItem) > DayItemsSource.Count)
+                        if (Convert.ToInt32(SelectedDay) > DayItemsSource.Count)
                         {
-                            DaySelectedItem = null;
+                            SelectedDay = null;
 
                             DaySelectedIndex = -1;
+
+                            DayLabel.Text = "Day";
                         }
                     }
 
                     return;
                 }
 
-                MonthSelectedItem = MonthItems[index];
+                //MonthSelectedItem = MonthItems?[index];
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                var x = e.Message;
+                //
             }
         }
 
-        void UpdateSelectedDayItem(int index)
+        private void UpdateSelectedDayItem(int index)
         {
-            if (MonthSelectedItem == null)
+            if (SelectedMonth == null)
             {
-                DaySelectedItem = null;
+                SelectedDay = null;
 
-                Application.Current.MainPage.DisplayAlert("Date", "Select a month first", "Ok");
+                //Application.Current.MainPage.DisplayAlert("Date", "Select a month first", "Ok");
 
                 return;
             }
 
             if (index == -1)
             {
-                DaySelectedItem = null;
+                SelectedDay = null;
 
                 return;
             }
 
             if (DayItemsSource != null)
             {
-                DaySelectedItem = DayItemsSource[index];
+                SelectedDay = DayItemsSource[index];
+
+                DayLabel.Text = SelectedDay.ToString();
 
                 SetDate();
 
                 DateSelected?.Invoke(this, EventArgs.Empty);
-
-                return;
             }
 
-            DaySelectedItem = DayItems[index];
+            //DaySelectedItem = DayItems?[index];
+        }
+
+        private void SetMinimumDate(DateTime? minimumDate)
+        {
+            if(minimumDate == null) return;
+
+            MinimumDate = minimumDate;
+
+            SetYearItems();
+        }
+
+        private void SetMaximumDate(DateTime? maximumDate)
+        {
+            if(maximumDate == null) return;
+
+            MaximumDate = maximumDate;
+
+            SetYearItems();
+        }
+
+        private void SetYearItems()
+        {
+            YearItemsSource = DateUtil.GetYears(MinimumDate.GetValueOrDefault().Year, MaximumDate.GetValueOrDefault().Year);
+
+            MonthItemsSource = DateUtil.GetFilteredMonths(MinimumDate.GetValueOrDefault().Month);
         }
 
         public static void OnSelectedYearIndexChanged(object bindable, object oldValue, object newValue)
@@ -430,334 +356,382 @@ namespace SimpleDatePicker.Views
             picker.DaySelectedIndexChanged?.Invoke(bindable, EventArgs.Empty);
         }
 
-        static void OnSelectedYearItemChanged(BindableObject bindable, object oldValue, object newValue)
+        public static void OnSelectedYearItemChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var picker = (SimpleDatePicker)bindable;
             picker.UpdateSelectedYearIndex(newValue);
         }
 
-        static void OnSelectedMonthItemChanged(BindableObject bindable, object oldValue, object newValue)
+        public static void OnSelectedMonthItemChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var picker = (SimpleDatePicker)bindable;
             picker.UpdateSelectedMonthIndex(newValue);
         }
 
-        static void OnSelectedDayItemChanged(BindableObject bindable, object oldValue, object newValue)
+        public static void OnSelectedDayItemChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var picker = (SimpleDatePicker)bindable;
             picker.UpdateSelectedDayIndex(newValue);
         }
-
-        private static void MinimumDatePropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        
+        public static void OnMinimumDateSelected(BindableObject bindable, object oldValue, object newValue)
         {
-            var control = (SimpleDatePicker)bindable;
-            
-            control.UpdateYearItems();
+            var picker = (SimpleDatePicker)bindable;
+            picker.SetMinimumDate(DateTime.Parse(newValue.ToString()));
         }
 
-        void UpdateYearItems()
+        public static void OnMaximumDateSelected(BindableObject bindable, object oldValue, object newValue)
         {
-
+            var picker = (SimpleDatePicker)bindable;
+            picker.SetMaximumDate(DateTime.Parse(newValue.ToString()));
         }
+
 
         public SimpleDatePicker()
         {
             InitializeComponent();
 
-            //Titles
-            YearPicker.SetBinding(Picker.TitleProperty, new Binding(nameof(YearPickerTitle), source: this));
-
-            MonthPicker.SetBinding(Picker.TitleProperty, new Binding(nameof(MonthPickerTitle), source: this));
-
-            DayPicker.SetBinding(Picker.TitleProperty, new Binding(nameof(DayPickerTitle), source: this));
-
             // ItemsSource property binding
-            YearPicker.SetBinding(Picker.ItemsSourceProperty, new Binding(nameof(YearItemsSource), source: this));
+            YearPicker.SetBinding(SfComboBox.DataSourceProperty, new Binding(nameof(YearItemsSource), source: this));
+            YearPicker.SetBinding(SfComboBox.ItemsSourceProperty, new Binding(nameof(YearItemsSource), source: this));
+            YearPicker.SetBinding(SfComboBox.ComboBoxSourceProperty, new Binding(nameof(YearItemsSource), source: this));
 
-            MonthPicker.SetBinding(Picker.ItemsSourceProperty, new Binding(nameof(MonthItemsSource), source: this));
+            MonthPicker.SetBinding(SfComboBox.DataSourceProperty, new Binding(nameof(MonthItemsSource), source: this));
+            MonthPicker.SetBinding(SfComboBox.ComboBoxSourceProperty, new Binding(nameof(MonthItemsSource), source: this));
+            MonthPicker.SetBinding(SfComboBox.ItemsSourceProperty, new Binding(nameof(MonthItemsSource), source: this));
 
-            DayPicker.SetBinding(Picker.ItemsSourceProperty, new Binding(nameof(DayItemsSource), source: this));
+            DayPicker.SetBinding(SfComboBox.DataSourceProperty, new Binding(nameof(DayItemsSource), source: this));
+            DayPicker.SetBinding(SfComboBox.ItemsSourceProperty, new Binding(nameof(DayItemsSource), source: this));
+            DayPicker.SetBinding(SfComboBox.ComboBoxSourceProperty, new Binding(nameof(DayItemsSource), source: this));
+
 
             // Selected Index
-            YearPicker.SetBinding(Picker.SelectedIndexProperty, new Binding(nameof(YearSelectedIndex), source: this));
+            YearPicker.SetBinding(SfComboBox.SelectedIndexProperty, new Binding(nameof(YearSelectedIndex), source: this));
 
-            MonthPicker.SetBinding(Picker.SelectedIndexProperty, new Binding("MonthSelectedIndex", source: this));
+            MonthPicker.SetBinding(SfComboBox.SelectedIndexProperty, new Binding(nameof(MonthSelectedIndex), source: this));
 
-            DayPicker.SetBinding(Picker.SelectedIndexProperty, new Binding("DaySelectedIndex", source: this));
-
+            DayPicker.SetBinding(SfComboBox.SelectedIndexProperty, new Binding(nameof(DaySelectedIndex), source: this));
             // Selected Item
-            YearPicker.SetBinding(Picker.SelectedItemProperty, new Binding("YearSelectedItem", source: this));
+            YearPicker.SetBinding(SfComboBox.SelectedItemProperty, new Binding(nameof(SelectedYear), source: this));
 
-            MonthPicker.SetBinding(Picker.SelectedItemProperty, new Binding("MonthSelectedItem", source: this));
+            MonthPicker.SetBinding(SfComboBox.SelectedItemProperty, new Binding(nameof(SelectedMonth), source: this));
 
-            DayPicker.SetBinding(Picker.SelectedItemProperty, new Binding("DaySelectedItem", source: this));
+            DayPicker.SetBinding(SfComboBox.SelectedItemProperty, new Binding(nameof(SelectedDay), source: this));
 
             // Font Size property binding
-            YearPicker.SetBinding(Picker.FontSizeProperty, new Binding(nameof(FontSize), source: this));
-            MonthPicker.SetBinding(Picker.FontSizeProperty, new Binding(nameof(FontSize), source: this));
-            DayPicker.SetBinding(Picker.FontSizeProperty, new Binding(nameof(FontSize), source: this));
-
-            Separator1.SetBinding(Label.FontSizeProperty, new Binding(nameof(FontSize), source: this));
-            Separator2.SetBinding(Label.FontSizeProperty, new Binding(nameof(FontSize), source: this));
+            YearLabel.SetBinding(SfComboBox.TextSizeProperty, new Binding(nameof(FontSize), source: this));
+            MonthLabel.SetBinding(SfComboBox.TextSizeProperty, new Binding(nameof(FontSize), source: this));
+            DayLabel.SetBinding(SfComboBox.TextSizeProperty, new Binding(nameof(FontSize), source: this));
 
             // Font Family property binding
-            YearPicker.SetBinding(Picker.FontFamilyProperty, new Binding(nameof(FontFamily), source: this));
-            MonthPicker.SetBinding(Picker.FontFamilyProperty, new Binding(nameof(FontFamily), source: this));
-            DayPicker.SetBinding(Picker.FontFamilyProperty, new Binding(nameof(FontFamily), source: this));
+            YearLabel.SetBinding(Label.FontFamilyProperty, new Binding(nameof(FontFamily), source: this));
+            MonthLabel.SetBinding(Label.FontFamilyProperty, new Binding(nameof(FontFamily), source: this));
+            DayLabel.SetBinding(Label.FontFamilyProperty, new Binding(nameof(FontFamily), source: this));
 
             // Picker Text color property binding
-            YearPicker.SetBinding(Picker.TextColorProperty, new Binding(nameof(TextColor), source: this));
-            MonthPicker.SetBinding(Picker.TextColorProperty, new Binding(nameof(TextColor), source: this));
-            DayPicker.SetBinding(Picker.TextColorProperty, new Binding(nameof(TextColor), source: this));
+            YearLabel.SetBinding(Label.TextColorProperty, new Binding(nameof(TextColor), source: this));
+            MonthLabel.SetBinding(Label.TextColorProperty, new Binding(nameof(TextColor), source: this));
+            DayLabel.SetBinding(Label.TextColorProperty, new Binding(nameof(TextColor), source: this));
 
-            // Picker Title color property binding
-            YearPicker.SetBinding(Picker.TitleColorProperty, new Binding(nameof(TitleColor), source: this));
-            MonthPicker.SetBinding(Picker.TitleColorProperty, new Binding(nameof(TitleColor), source: this));
-            DayPicker.SetBinding(Picker.TitleColorProperty, new Binding(nameof(TitleColor), source: this));
+            YearItemsSource = DateUtil.GetYears();
 
-            // Separator color property binding
-            Separator1.SetBinding(Label.TextColorProperty, new Binding(nameof(SeparatorColor), source: this));
-            Separator2.SetBinding(Label.TextColorProperty, new Binding(nameof(SeparatorColor), source: this));
-
-            // Separator Text property binding
-            Separator1.SetBinding(Label.TextProperty, new Binding(nameof(Separator), source: this));
-            Separator2.SetBinding(Label.TextProperty, new Binding(nameof(Separator), source: this));
-
-            YearItemsSource = DateUtil.GetYears(MinimumYear, MaximumYear);
+            //YearSelectedItem = DateTime.Now.Year;
 
             //MonthItemsSource = DateUtil.Months;
             MonthItemsSource = DateUtil.MonthNames;
 
-            MonthPicker.SelectedIndexChanged += MonthPicker_MonthSelectionChanged;
+            MonthPicker.SelectionChanged += MonthPicker_MonthSelectionChanged;
 
-            YearPicker.Focused += YearPicker_Focused;
+            YearPicker.SelectionChanged += YearPicker_SelectionChanged;
 
-            YearPicker.Unfocused += YearPicker_Unfocused;
+            //YearPicker.Focused += YearPicker_Focused;
 
-            MonthPicker.Focused += MonthPicker_Focused;
+            //YearPicker.Unfocused += YearPicker_Unfocused;
 
-            MonthPicker.Unfocused += MonthPicker_Unfocused;
+            //MonthPicker.Focused += MonthPicker_Focused;
 
-            DayPicker.Focused += DayPicker_Focused;
+            //MonthPicker.Unfocused += MonthPicker_Unfocused;
 
-            DayPicker.Unfocused += DayPicker_Unfocused;
+            //DayPicker.Focused += DayPicker_Focused;
 
-            YearTitle = YearPickerTitle;
+            //DayPicker.Unfocused += DayPicker_Unfocused;
 
-            MonthTitle = MonthPickerTitle;
+            //YearPicker.DropDownButtonSettings = new DropDownButtonSettings
+            //{
+            //   // BackgroundColor = Color.Green,
+            //    FontColor = Color.Red,
+            //    //HighlightedBackgroundColor = Color.Green,
+            //    //HighlightFontColor = Color.Yellow,
 
-            DayTitle = DayPickerTitle;
-
-            SetYears();
+            //};
         }
-
-        
 
         private void MonthPicker_MonthSelectionChanged(object sender, EventArgs e)
         {
             try
             {
-                if (MonthSelectedItem != null)
+                if (SelectedMonth == null) return;
+
+                var year = Convert.ToInt32(SelectedYear?.ToString());
+
+                var month = Convert.ToInt32(DateUtil.GetMonthIndex((string)SelectedMonth).ToString());
+
+                if (MinimumDate != null && MaximumDate != null)
                 {
-                    //if (DayItemsSource == null)
-                    //{
-                    var month = DateUtil.GetMonthIndex((string)MonthSelectedItem).ToString();
+                    ResetDay();
 
-                    DayItemsSource = DateUtil.GetDays(month, Convert.ToInt32((string)YearSelectedItem));
-                    //}
+                    if (year == MinimumDate.Value.Year && month == MinimumDate.Value.Month)
+                    {
+                        ResetDay();
 
+                        DayItemsSource = DateUtil.GetFilteredDays(DateUtil.GetMonthIndex(SelectedMonth.ToString()).ToString(), MinimumDate.Value.Day);
+                    }
+                    else if (year == MaximumDate.Value.Year && month == MaximumDate.Value.Month)
+                    {
+                        ResetDay();
+
+                        DayItemsSource = DateUtil.GetFilteredDaysMax(DateUtil.GetMonthIndex(SelectedMonth.ToString()).ToString(), MaximumDate.Value.Day);
+                    }
+                    else if (year == MaximumDate.Value.Year && month < MaximumDate.Value.Month)
+                    {
+                        ResetDay();
+
+                        DayItemsSource = DateUtil.GetDays(DateUtil.GetMonthIndex((string)SelectedMonth).ToString(),
+                            Convert.ToInt32((string)SelectedYear!));
+                    }
+                    else if (year == MinimumDate.Value.Year && month > MinimumDate.Value.Month)
+                    {
+                        ResetDay();
+
+                        DayItemsSource = DateUtil.GetDays(DateUtil.GetMonthIndex((string)SelectedMonth).ToString(),
+                            Convert.ToInt32((string)SelectedYear!));
+                    }
+                    else if (year < MaximumDate.Value.Year)
+                    {
+                        ResetDay();
+
+                        DayItemsSource = DateUtil.GetDays(DateUtil.GetMonthIndex((string)SelectedMonth).ToString(),
+                            Convert.ToInt32((string)SelectedYear!));
+                    }
+                }
+                else if (MinimumDate != null && MaximumDate == null)
+                {
+                    if (year > MinimumDate.Value.Year
+                        || month > MinimumDate.Value.Month)
+                    {
+                        ResetDay();
+
+                        DayItemsSource = DateUtil.GetDays(DateUtil.GetMonthIndex((string)SelectedMonth).ToString(),
+                            Convert.ToInt32((string)SelectedYear!));
+                    }
+                    else
+                    {
+                        ResetDay();
+
+                        DayItemsSource = DateUtil.GetFilteredDays(DateUtil.GetMonthIndex(SelectedMonth.ToString()).ToString(), MinimumDate.Value.Day);
+                    }
+                }
+                else if (MinimumDate == null && MaximumDate != null)
+                {
+                    if (year == MaximumDate.Value.Year && month == MaximumDate.Value.Month)
+                    {
+                        ResetDay();
+
+                        DayItemsSource = DateUtil.GetFilteredDaysMax(DateUtil.GetMonthIndex(SelectedMonth.ToString()).ToString(), MaximumDate.Value.Day);
+                    }
+                }
+                else
+                {
+                    DayItemsSource = DateUtil.GetDays(DateUtil.GetMonthIndex((string)SelectedMonth).ToString(),
+                        Convert.ToInt32((string)SelectedYear!));
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //
             }
-
         }
 
-        public DateTime GetDate()
+        private void YearPicker_SelectionChanged(object sender, EventArgs e)
         {
-            try
+            if(SelectedYear == null) return;
+
+            var year = Convert.ToInt32(SelectedYear.ToString());
+
+            //if (MinimumDate == null) return;
+
+            if (MinimumDate != null && MaximumDate != null)
             {
-                if (YearSelectedItem != null && MonthSelectedItem != null && DaySelectedItem != null)
+                ResetMonth();
+
+                if (year < MaximumDate.Value.Year)
                 {
-                    return new DateTime(Convert.ToInt32(YearSelectedItem), Convert.ToInt32(MonthSelectedItem),
-                        Convert.ToInt32(DaySelectedItem));
+                    MonthItemsSource = year > MinimumDate.Value.Year
+                        ? DateUtil.MonthNames
+                        : DateUtil.GetFilteredMonths(MinimumDate.Value.Month);
                 }
-
-                return DateTime.Today;
+                else
+                {
+                    MonthItemsSource = DateUtil.GetFilteredMonths(MaximumDate.Value.Month);
+                }
             }
-            catch (Exception e)
+            else if (MinimumDate != null && MaximumDate == null)
             {
-                //Console.WriteLine(e);
-                //throw;
-                return DateTime.Today;
-            }
+                ResetMonth();
 
+                if (year > MinimumDate.Value.Year) MonthItemsSource = DateUtil.MonthNames;
+            }
+            else if (MinimumDate == null && MaximumDate != null)
+            {
+                ResetMonth();
+
+                if (year == MaximumDate.Value.Year)
+                    MonthItemsSource = DateUtil.GetFilteredMonths(MaximumDate.Value.Month);
+            }
         }
 
-        private void SetDate(DateTime date)
+        /// <summary>
+        /// Gets the selected date
+        /// </summary>
+        /// <returns>A <see cref="DateTime"/></returns>
+        public DateTime? GetDate() => Date;
+
+        /// <summary>
+        /// Sets the date
+        /// </summary>
+        /// <param name="date">The date to be set</param>
+        public void SetDate(DateTime? date)
         {
             try
             {
-                YearSelectedItem = date.Year;
-                YearSelectedIndex = YearItemsSource.IndexOf(date.Year);
-                YearPickerTitle = date.Year.ToString();
-                //YearLabel.Text = date.Year.ToString();
+                SelectedYear = date!.Value.Year;
+                YearSelectedIndex = YearItemsSource!.IndexOf(date.Value.Year);
+                //YearPickerTitle = date.Year.ToString();
+                YearLabel.Text = date.Value.Year.ToString();
 
 
                 //MonthSelectedItem = date.Month;
-                MonthSelectedItem = DateUtil.GetMonthName(date.Month);
+                SelectedMonth = DateUtil.GetMonthName(date.Value.Month);
                 // MonthSelectedIndex = MonthItemsSource.IndexOf(date.Month);
-                MonthSelectedIndex = MonthItemsSource.IndexOf(DateUtil.GetMonthName(date.Month));
-                MonthPickerTitle = DateUtil.GetMonthName(date.Month);
+                MonthSelectedIndex = MonthItemsSource!.IndexOf(DateUtil.GetMonthName(date.Value.Month));
+                //MonthPickerTitle = DateUtil.GetMonthName(date.Month);
                 //MonthLabel.Text = date.Month.ToString();
-                //MonthLabel.Text = DateUtil.GetMonthName(date.Month);
+                MonthLabel.Text = DateUtil.GetMonthName(date.Value.Month);
 
-                DaySelectedItem = date.Day;
-                if (DayItemsSource == null)
-                {
-                    DayItemsSource = DateUtil.GetDays(date.Month.ToString(), date.Year);
-                }
-                DaySelectedIndex = DayItemsSource.IndexOf(date.Day);
-                DayPickerTitle = date.Day.ToString();
-                //DayLabel.Text = date.Day.ToString();
+                DayItemsSource ??= DateUtil.GetDays(date.Value.Month.ToString(), date.Value.Year);
+
+                SelectedDay = date.Value.Day;
+
+                DaySelectedIndex = DayItemsSource.IndexOf(date.Value.Day);
+
+                //DayPickerTitle = date.Day.ToString();
+                DayLabel.Text = date.Value.Day.ToString();
 
                 Date = date;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                var x = ex.Message;
+                //
             }
-
         }
 
         protected void SetDate()
         {
             try
             {
-                if (YearSelectedItem != null && MonthSelectedItem != null && DaySelectedItem != null)
-                {
-                    int year = Convert.ToInt32(YearSelectedItem);
-                    //int month = Convert.ToInt32(MonthSelectedItem);
-                    int month = Convert.ToInt32(DateUtil.GetMonthIndex((string)MonthSelectedItem).ToString());
-                    int day = Convert.ToInt32(DaySelectedItem);
+                if (SelectedYear == null || SelectedMonth == null || SelectedDay == null) return;
 
-                    var date = new DateTime(year, month, day);
-
-                    Date = date;
-                }
+                Date = new DateTime(Convert.ToInt32(SelectedYear),
+                    Convert.ToInt32(DateUtil.GetMonthIndex((string)SelectedMonth).ToString()),
+                    Convert.ToInt32(SelectedDay));
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                //Console.WriteLine(e);
-                //throw;
+                //
             }
-
         }
 
+        /// <summary>
+        /// Clears the set date 
+        /// </summary>
         public void ClearDate()
         {
-            YearSelectedItem = null;
-            YearSelectedIndex = -1;
+            ResetYear();
+            
+            ResetMonth();
 
-            MonthSelectedItem = null;
-            MonthSelectedIndex = -1;
+            ResetDay();
 
-            DaySelectedItem = null;
-            DaySelectedIndex = -1;
-
-            Date = DateTime.Today;
-
-            //YearLabel.Text = "Year";
-
-            //MonthLabel.Text = "Month";
-
-            //DayLabel.Text = "Day";
-
-            //   YearTitle = "YYYY";
-
-            //   MonthTitle = "MM";
-
-            //   DayTitle = "DD";
+            Date = null;
         }
 
-        public void YearPicker_Focused(object sender, EventArgs e)
-        {
-            YearPicker.Title = YearTitle;
-        }
-
-        public void YearPicker_Unfocused(object sender, EventArgs e)
-        {
-            //if (YearSelectedItem == null)
-            //{
-            //    YearTitle = "YYYY";
-            //   }
-        }
-
-        public void MonthPicker_Focused(object sender, EventArgs e)
-        {
-            if (YearSelectedItem == null)
-            {
-                Application.Current.MainPage.DisplayAlert("Date", "Select a year first", "Ok");
-
-                MonthPicker.Unfocus();
-
-                return;
-            }
-
-            MonthPicker.Title = MonthTitle;
-        }
-
-        public void MonthPicker_Unfocused(object sender, EventArgs e)
-        {
-            if (MonthSelectedItem == null)
-            {
-                //      MonthTitle = "MM";
-            }
-        }
-
-        public void DayPicker_Focused(object sender, EventArgs e)
-        {
-            if (MonthSelectedItem == null)
-            {
-                Application.Current.MainPage.DisplayAlert("Date", "Select a month first", "Ok");
-
-                DayPicker.Unfocus();
-
-                return;
-            }
-
-            DayPicker.Title = DayTitle;
-        }
-
-        public void DayPicker_Unfocused(object sender, EventArgs e)
-        {
-            if (DaySelectedItem == null)
-            {
-
-            }
-            else
-            {
-                if (YearSelectedItem != null && MonthSelectedItem != null && DaySelectedItem != null)
-                {
-                    Date = new DateTime(Convert.ToInt32(YearSelectedItem), Convert.ToInt32(DateUtil.GetMonthIndex((string)MonthSelectedItem).ToString()),
-                        Convert.ToInt32(DaySelectedItem));
-                }
-            }
-        }
-
-        //private static void MinMaxYearTextChanged(BindableObject bindable, object oldValue, object newValue)
+        //public void YearPicker_Focused(object sender, EventArgs e)
         //{
-        //    // TODO better error handling
-        //    SetYears();
-        //    // ((SimpleDatePicker)bindable).YearItemsSource = newValue.ToString();
+        //    //YearPicker.Title = YearTitle;
         //}
 
-        private void SetYears()
+        //public void YearPicker_Unfocused(object sender, EventArgs e)
+        //{
+        //    YearLabel.Text = YearSelectedItem == null ? "Year" : YearSelectedItem.ToString();
+        //}
+
+        //public void MonthPicker_Focused(object sender, EventArgs e)
+        //{
+        //    if (YearSelectedItem != null) return;
+
+        //    Application.Current.MainPage.DisplayAlert("Date", "Select a year first", "Ok");
+
+        //    MonthPicker.Unfocus();
+
+        //    //MonthPicker.Title = MonthTitle;
+        //}
+
+        //public void MonthPicker_Unfocused(object sender, EventArgs e)
+        //{
+        //    MonthLabel.Text = MonthSelectedItem == null ? "Month" : DateUtil.GetMonthName(Convert.ToInt32(MonthSelectedItem.ToString()));
+        //}
+
+        //public void DayPicker_Focused(object sender, EventArgs e)
+        //{
+        //    if (MonthSelectedItem != null) return;
+
+        //    Application.Current.MainPage.DisplayAlert("Date", "Select a month first", "Ok");
+
+        //    DayPicker.Unfocus();
+
+        //    //DayPicker.Title = DayTitle;
+        //}
+
+        //public void DayPicker_Unfocused(object sender, EventArgs e)
+        //{
+        //    if (DaySelectedItem == null) return;
+
+        //    if (YearSelectedItem != null && MonthSelectedItem != null && DaySelectedItem != null)
+        //    {
+        //        Date = new DateTime(Convert.ToInt32(YearSelectedItem), Convert.ToInt32(DateUtil.GetMonthIndex((string)MonthSelectedItem).ToString()),
+        //            Convert.ToInt32(DaySelectedItem));
+        //    }
+        //}
+
+        private void ResetDay()
         {
-            YearPicker.ItemsSource = DateUtil.GetYears(MinimumYear, MaximumYear);
+            SelectedDay = null;
+            DaySelectedIndex = -1;
+            DayLabel.Text = "Day";
+        }
+        
+        private void ResetMonth()
+        {
+            SelectedMonth = null;
+            MonthSelectedIndex = -1;
+            MonthLabel.Text = "Month";
+        }
+        
+        private void ResetYear()
+        {
+            SelectedYear = null;
+            YearSelectedIndex = -1;
+            YearLabel.Text = "Year";
         }
     }
-
 }

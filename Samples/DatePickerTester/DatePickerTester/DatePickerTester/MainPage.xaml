@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DatePickerTester.MainPage"
-             xmlns:dp="clr-namespace:SimpleDatePicker.Views;assembly=SimpleDatePicker">
+             xmlns:dp="clr-namespace:SimpleDatePicker.Views;assembly=SimpleDatePicker"
+             xmlns:st="clr-namespace:DatePickerTester;assembly=DatePickerTester">
 
     <StackLayout>
         <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
@@ -23,18 +24,17 @@
   
         <dp:SimpleDatePicker  x:Name="SimpleDatePicker" 
                               Margin="20" 
-                              YearPickerTitle="Select Year"
-                              MonthPickerTitle="Choose month"
-                              DayPickerTitle="Which day"
-                              FontSize="16"
-                              Separator="|"
-                              SeparatorColor="Green"
-                              TitleColor="Red"
-                              TextColor="Yellow"
+                              FontSize="100"
+                              TextColor="Red"
                               DateSelected="SimpleDatePicker_OnDateSelected"
-                              MaximumYear="2022"
-                              MinimumYear="2010"
+                              
                               />
+
+        <Button x:Name="ClearBtn"
+                Text="Clear"
+                Clicked="ClearBtn_OnClicked"/>
+
+        <!--<st:StDatePicker x:Name="StDatePicker" />-->
 
         <Label x:Name="DateLabel" 
                />

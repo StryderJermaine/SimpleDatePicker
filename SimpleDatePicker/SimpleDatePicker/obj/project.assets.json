@@ -2,6 +2,50 @@
   "version": 3,
   "targets": {
     ".NETStandard,Version=v2.1": {
+      "Syncfusion.Licensing/20.1.0.51": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.Core/20.1.0.51": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "20.1.0.51",
+          "Xamarin.Forms": "5.0.0.2012"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.Core.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Core.XForms.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.DataSource/20.1.0.51": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.DataSource.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.DataSource.Portable.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfComboBox/20.1.0.51": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Xamarin.Core": "20.1.0.51",
+          "Xamarin.Forms": "5.0.0.2012"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.SfComboBox.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.SfComboBox.XForms.dll": {}
+        }
+      },
       "Xamarin.Forms/5.0.0.2401": {
         "type": "package",
         "compile": {
@@ -22,6 +66,131 @@
     }
   },
   "libraries": {
+    "Syncfusion.Licensing/20.1.0.51": {
+      "sha512": "mn6bLH6fXMFGQJPVmAQBfJ6aE6AVBzrwbM0o9fvq3GWJ/8qtwXEDhWy34YABhPuX3RpVKWeOq5dwIh+hGwmBbw==",
+      "type": "package",
+      "path": "syncfusion.licensing/20.1.0.51",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "lib/MonoAndroid10.0/Syncfusion.Licensing.dll",
+        "lib/MonoAndroid90/Syncfusion.Licensing.dll",
+        "lib/Xamarin.Mac/Syncfusion.Licensing.dll",
+        "lib/Xamarin.iOS10/Syncfusion.Licensing.dll",
+        "lib/net20/Syncfusion.Licensing.dll",
+        "lib/net35/Syncfusion.Licensing.dll",
+        "lib/net40/Syncfusion.Licensing.dll",
+        "lib/net45/Syncfusion.Licensing.dll",
+        "lib/net451/Syncfusion.Licensing.dll",
+        "lib/net46/Syncfusion.Licensing.dll",
+        "lib/net5.0/Syncfusion.Licensing.dll",
+        "lib/net6.0/Syncfusion.Licensing.dll",
+        "lib/netcoreapp3.1/Syncfusion.Licensing.dll",
+        "lib/netstandard1.0/Syncfusion.Licensing.dll",
+        "lib/netstandard1.2/Syncfusion.Licensing.dll",
+        "lib/netstandard1.4/Syncfusion.Licensing.dll",
+        "lib/netstandard2.0/Syncfusion.Licensing.dll",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.Licensing.dll",
+        "lib/uap10.0/Syncfusion.Licensing.dll",
+        "syncfusion.licensing.20.1.0.51.nupkg.sha512",
+        "syncfusion.licensing.nuspec",
+        "syncfusion_logo.png"
+      ]
+    },
+    "Syncfusion.Xamarin.Core/20.1.0.51": {
+      "sha512": "t6xc4fKdNvYu9U+6xB05alg6Ewm8dQfOVJizUsC8a7b6mPavj6DS91NRSgi1LQTOO9QKw0dnkj9ztFbQVgH+zQ==",
+      "type": "package",
+      "path": "syncfusion.xamarin.core/20.1.0.51",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "README.md",
+        "lib/MonoAndroid10.0/Syncfusion.Core.XForms.Android.dll",
+        "lib/MonoAndroid10.0/Syncfusion.Core.XForms.dll",
+        "lib/MonoAndroid10.0/Syncfusion.Core.XForms.xml",
+        "lib/Xamarin.Mac/Syncfusion.Core.XForms.dll",
+        "lib/Xamarin.Mac/Syncfusion.Core.XForms.macOS.dll",
+        "lib/Xamarin.iOS10/Syncfusion.Core.XForms.dll",
+        "lib/Xamarin.iOS10/Syncfusion.Core.XForms.iOS.dll",
+        "lib/Xamarin.iOS10/Syncfusion.Core.XForms.xml",
+        "lib/netstandard2.0/Syncfusion.Core.XForms.dll",
+        "lib/netstandard2.0/Syncfusion.Core.XForms.xml",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.Core.XForms.dll",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.Core.XForms.xml",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP.pri",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP/Syncfusion.Core.XForms.UWP.xr.xml",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP/TILRenderer/ToggleIcons/ClearButtonViewVisibleIcon.xaml",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP/TILRenderer/ToggleIcons/DropDownIcon.xaml",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP/TILRenderer/ToggleIcons/ToggleCollapsedIcon.xaml",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP/TILRenderer/ToggleIcons/ToggleVisibleIcon.xaml",
+        "lib/uap10.0/Syncfusion.Core.XForms.dll",
+        "lib/uap10.0/Syncfusion.Core.XForms.xml",
+        "syncfusion.xamarin.core.20.1.0.51.nupkg.sha512",
+        "syncfusion.xamarin.core.nuspec",
+        "syncfusion_logo.png"
+      ]
+    },
+    "Syncfusion.Xamarin.DataSource/20.1.0.51": {
+      "sha512": "mJEiSzyBQWOcypncPMAltzoebx47B9pwDgg278x+FQKyWI0Lfidt/Daxruga0q0WSvWwqdwF2Jmm8fSKSCKy9g==",
+      "type": "package",
+      "path": "syncfusion.xamarin.datasource/20.1.0.51",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "README.md",
+        "lib/MonoAndroid10.0/Syncfusion.DataSource.Portable.XML",
+        "lib/MonoAndroid10.0/Syncfusion.DataSource.Portable.dll",
+        "lib/Xamarin.iOS10/Syncfusion.DataSource.Portable.XML",
+        "lib/Xamarin.iOS10/Syncfusion.DataSource.Portable.dll",
+        "lib/netstandard2.0/Syncfusion.DataSource.Portable.XML",
+        "lib/netstandard2.0/Syncfusion.DataSource.Portable.dll",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.DataSource.Portable.XML",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.DataSource.Portable.dll",
+        "lib/uap10.0/Syncfusion.DataSource.Portable.XML",
+        "lib/uap10.0/Syncfusion.DataSource.Portable.dll",
+        "syncfusion.xamarin.datasource.20.1.0.51.nupkg.sha512",
+        "syncfusion.xamarin.datasource.nuspec",
+        "syncfusion_logo.png"
+      ]
+    },
+    "Syncfusion.Xamarin.SfComboBox/20.1.0.51": {
+      "sha512": "JVVu903O5o7EFQUNxKAYTB7O+IGc6CT7+ebm+s0PazR5PFIDFoox6o7AUnhNP7bOpzynUorSQOukqNO1EUSEzg==",
+      "type": "package",
+      "path": "syncfusion.xamarin.sfcombobox/20.1.0.51",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "README.md",
+        "lib/MonoAndroid10.0/Syncfusion.SfComboBox.XForms.Android.dll",
+        "lib/MonoAndroid10.0/Syncfusion.SfComboBox.XForms.XML",
+        "lib/MonoAndroid10.0/Syncfusion.SfComboBox.XForms.dll",
+        "lib/Xamarin.iOS10/Syncfusion.SfComboBox.XForms.XML",
+        "lib/Xamarin.iOS10/Syncfusion.SfComboBox.XForms.dll",
+        "lib/Xamarin.iOS10/Syncfusion.SfComboBox.XForms.iOS.dll",
+        "lib/netstandard2.0/Syncfusion.SfComboBox.XForms.XML",
+        "lib/netstandard2.0/Syncfusion.SfComboBox.XForms.dll",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.SfComboBox.XForms.XML",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.SfComboBox.XForms.dll",
+        "lib/uap10.0/Syncfusion.SfComboBox.XForms.UWP.XML",
+        "lib/uap10.0/Syncfusion.SfComboBox.XForms.UWP.dll",
+        "lib/uap10.0/Syncfusion.SfComboBox.XForms.UWP.pri",
+        "lib/uap10.0/Syncfusion.SfComboBox.XForms.UWP/Properties/Syncfusion.SfComboBox.XForms.UWP.rd.xml",
+        "lib/uap10.0/Syncfusion.SfComboBox.XForms.UWP/Syncfusion.SfComboBox.XForms.UWP.xr.xml",
+        "lib/uap10.0/Syncfusion.SfComboBox.XForms.UWP/Themes/Generic.xaml",
+        "lib/uap10.0/Syncfusion.SfComboBox.XForms.UWP/darkthemeimage.png",
+        "lib/uap10.0/Syncfusion.SfComboBox.XForms.UWP/dropdownbuttonimage.png",
+        "lib/uap10.0/Syncfusion.SfComboBox.XForms.XML",
+        "lib/uap10.0/Syncfusion.SfComboBox.XForms.dll",
+        "syncfusion.xamarin.sfcombobox.20.1.0.51.nupkg.sha512",
+        "syncfusion.xamarin.sfcombobox.nuspec",
+        "syncfusion_logo.png"
+      ]
+    },
     "Xamarin.Forms/5.0.0.2401": {
       "sha512": "fk/V8QWjeyo8UXcsqsNRMd6o1H5PBfyXYm97nxvhMsJIdeqDgfRWyIsSurM8uLGLQGdQP23R+hHj7vcTSo2UjQ==",
       "type": "package",
@@ -241,6 +410,8 @@
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.1": [
+      "Syncfusion.Xamarin.DataSource >= 20.1.0.51",
+      "Syncfusion.Xamarin.SfComboBox >= 20.1.0.51",
       "Xamarin.Forms >= 5.0.0.2401"
     ]
   },
@@ -292,6 +463,14 @@
       "netstandard2.1": {
         "targetAlias": "netstandard2.1",
         "dependencies": {
+          "Syncfusion.Xamarin.DataSource": {
+            "target": "Package",
+            "version": "[20.1.0.51, )"
+          },
+          "Syncfusion.Xamarin.SfComboBox": {
+            "target": "Package",
+            "version": "[20.1.0.51, )"
+          },
           "Xamarin.Forms": {
             "target": "Package",
             "version": "[5.0.0.2401, )"
